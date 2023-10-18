@@ -4,7 +4,7 @@ After the C++ and Rust version of this project I wanted to try the same in godot
 Maybe now I should try the ports to Unreal Engine, Unity and CryEngine.... doooh better not :)
 
 - Font provided by Font Space (https://www.fontspace.com/trueno-font-f22345)
-- Godot 3.5.1 
+- Godot 4.0.2
 <br/>
 <br/>
 
