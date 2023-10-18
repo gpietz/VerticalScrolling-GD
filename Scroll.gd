@@ -1,10 +1,10 @@
 extends Node2D
 
-const scroll_speed = 2
-const font_size = 72
-var font = FontFile.new()
-var font_variation
-var msg = [ 
+const scroll_speed: int = 2
+const font_size: int = 72
+var font: FontFile = FontFile.new()
+var font_variation: FontVariation
+var msg: Array[String] = [ 
 	"Lorem ipsum dolor sit amet,",
 	"consetetur sadipscing elitr,",
 	"sed diam nonumy eirmod tempor",
@@ -23,18 +23,19 @@ var msg = [
 	"rebum. Stet clita kasd gubergren, no",
 	"sea takimata sanctus est Lorem ipsum",
 	"dolor sit amet.",
-	"****\n" 
+	"****\n"
 ]
-var textlines = Array()
+var textlines: Array[MyTextLine] = []
 
 class MyTextLine:
-	var width = -1
-	var x_pos = -1
-	var y_pos = -1
+	var width: int = -1
+	var x_pos: int = -1
+	var y_pos: int = -1
 	var label: Label = null
 
 func _init():
 	RenderingServer.set_default_clear_color(Color(0, 0, 0, 1.0))
+	
 	var load_result = font.load_dynamic_font("assets/Trueno-wml2.otf")
 	if load_result == OK:
 		print("Succssfull loaded font file")
@@ -46,7 +47,7 @@ func _init():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var n = 0
-	while get_child_count() < msg.size():
+	while textlines.size() < msg.size():
 		#-- create the label and add to scene
 		var label = Label.new();
 		#-- Assign font to label; 
@@ -55,6 +56,7 @@ func _ready():
 		if font != null:
 			label.add_theme_font_override("font", font_variation)
 			label.add_theme_font_size_override("font_size", font_size)
+			
 		label.text = msg[n]
 		label.visible = false
 		
@@ -66,6 +68,8 @@ func _ready():
 		text_line.label = label
 		textlines.append(text_line)
 		n += 1
+		
+	print("Number of textlines: ", textlines.size(), " / ", msg.size())
 
 func _process(delta):
 	var viewport_size = get_viewport_rect().size
@@ -74,7 +78,7 @@ func _process(delta):
 	var prev_line_offset = -1
 	
 	#-- Scroll text
-	for n in msg.size():
+	for n in textlines.size():
 		var text_line = textlines[n] as MyTextLine
 		var text_label = text_line.label as Label
 		if text_label.visible == false:
@@ -95,7 +99,7 @@ func _process(delta):
 				text_label.set_position(Vector2(text_line.x_pos, text_line.y_pos))
 				
 	#-- Reset text scrolling, when last line is done
-	var last_line = textlines[msg.size() - 1] as MyTextLine
+	var last_line = textlines[textlines.size() - 1] as MyTextLine
 	if last_line.y_pos <= -(font_size):
 		prev_line_offset = viewport_height
 		for n in msg.size():
