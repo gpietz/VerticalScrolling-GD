@@ -4,7 +4,7 @@ After the C++ and Rust version of this project I wanted to try the same in godot
 Maybe now I should try the ports to Unreal Engine, Unity and CryEngine.... doooh better not :)
 
 - Font provided by Font Space (https://www.fontspace.com/trueno-font-f22345)
-- Music from Alex Productions (https://www.chosic.com/download-audio/53218/)
+- Music by vitalezzz (https://opengameart.org/users/vitalezzz)
 - Godot 4.1.2
 <br/>
 <br/>
