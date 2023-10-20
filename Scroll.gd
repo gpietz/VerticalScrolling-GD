@@ -1,6 +1,6 @@
 extends Node2D
 
-const scroll_speed: int = 2
+const scroll_speed: float = 0.6
 const font_size: int = 72
 var font: FontFile = FontFile.new()
 var font_variation: FontVariation
@@ -28,9 +28,9 @@ var msg: Array[String] = [
 var textlines: Array[MyTextLine] = []
 
 class MyTextLine:
-	var width: int = -1
-	var x_pos: int = -1
-	var y_pos: int = -1
+	var width: float = -1
+	var x_pos: float = -1
+	var y_pos: float = -1
 	var label: Label = null
 
 func _init():
@@ -106,3 +106,5 @@ func _process(delta):
 			var text_line = textlines[n] as MyTextLine
 			text_line.y_pos = prev_line_offset
 			prev_line_offset += font_size
+
+	queue_redraw()
